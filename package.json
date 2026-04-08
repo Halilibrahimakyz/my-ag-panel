@@ -1,0 +1,59 @@
+{
+  "name": "my-ag-panel",
+  "displayName": "Antigravity Quota",
+  "description": "Secure Local Quota Display",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onView:ag.quotaView"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "my-ag-sidebar",
+          "title": "Antigravity",
+          "icon": "assets/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "my-ag-sidebar": [
+        {
+          "type": "webview",
+          "id": "ag.quotaView",
+          "name": "Quota",
+          "icon": "assets/icon.svg"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "ag.refreshQuota",
+        "title": "Refresh Quota",
+        "icon": "$(refresh)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "ag.refreshQuota",
+          "when": "view == ag.quotaView",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.4.0"
+  }
+}
